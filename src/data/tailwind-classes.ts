@@ -1,0 +1,1 @@
+export const blackBorder = 'border-2 border-solid border-black';
