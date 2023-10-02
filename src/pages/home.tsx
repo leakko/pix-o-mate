@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { Header } from '../components/Header';
 import { usersQuery } from '../data/queries/users';
 
 
@@ -11,8 +10,7 @@ export const Home = () => {
 
 	return (
 		<>
-			<Header title="Home" />
-			Hello
+			
 		</>
 	)
 }
