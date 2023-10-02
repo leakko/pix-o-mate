@@ -8,5 +8,6 @@ export const usersQuery: UseQueryOptions = {
 			return resp.data
 		})
 	},
-	refetchOnWindowFocus: false
+	refetchOnWindowFocus: false,
+	staleTime: 600000 // revalidate data every 10 minutes
 }
