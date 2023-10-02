@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { User } from '../types/user';
-import { GO_API_ENDPOINTS } from '../constants/go-api-endpoints';
+import { GO_API_ENDPOINTS } from '../data/constants/go-api-endpoints';
 
 class GoApiService {
 	getUsers(): Promise<{ data: User[] }> {
