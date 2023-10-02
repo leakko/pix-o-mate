@@ -12,15 +12,16 @@ interface IFavoritesContext {
 	removeFavorite: (favorite: Owner) => void
 }
 
-export const FavoritesContext = createContext<Partial<IFavoritesContext>>({ favorites: [] });
+export const FavoritesContext = createContext<IFavoritesContext>({ favorites: [], addFavorite: () => {}, removeFavorite: () => {} });
 
 const reducer = (state: Owner[], action: { type: FavoritesActions, payload: Owner }) => {
 	switch (action.type) {
 		case FavoritesActions['[Favorites] Add']: {
-			return [...state, action.payload];
+			const alreadyExistingFavourite = state.find(favorite => favorite.id === action.payload.id);
+			return alreadyExistingFavourite ? state : [...state, action.payload];
 		}
 		case FavoritesActions['[Favorites] Remove']: {
-			return state.filter(owner => owner.id !== action.payload?.id);
+			return state.filter(favorite => favorite.id !== action.payload?.id);
 		}
 	}
 }
