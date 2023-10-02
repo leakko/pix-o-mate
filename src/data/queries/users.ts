@@ -1,7 +1,8 @@
 import { UseQueryOptions } from '@tanstack/react-query'
 import { goApiService } from '../../services/go-api.service'
+import { Owner } from '../../types/owner'
 
-export const usersQuery: UseQueryOptions = {
+export const usersQuery: UseQueryOptions<Owner[]> = {
 	queryKey: ['users'],
 	queryFn: () => {
 		return goApiService.getUsers().then(resp => {

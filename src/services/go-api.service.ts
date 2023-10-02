@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User } from '../types/user';
+import { Owner } from '../types/owner';
 import { GO_API_ENDPOINTS } from '../data/constants/go-api-endpoints';
 
 class GoApiService {
