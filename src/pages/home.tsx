@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { usersQuery } from '../data/queries/users';
 import { blackBorder } from '../data/tailwind-classes';
-import { useNavigate } from 'react-router-dom';
+import SyncLoader from 'react-spinners/SyncLoader'
 
 
 export const Home = () => {
 	const { isLoading, error, data, isFetching } = useQuery(usersQuery);
 
-	if ( isLoading || isFetching ) return 'Loading...'
+	if ( isLoading || isFetching ) return <SyncLoader />;
 	if (error) return 'An error has occurred: ' + (error as { message: string }).message
 
 
