@@ -21,7 +21,7 @@ export const Layout: React.FC = () => {
 				<h1 className='text-3xl font-bold'>{ title }</h1>
 				<Favorites />
 			</header>
-			<main className='mt-20 flex justify-center items-center'>
+			<main className='my-20 flex justify-center items-center'>
 				<Outlet />
 			</main>
 		</>
