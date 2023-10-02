@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
-export const Owners = () => {
+export const Search = () => {
 	return (
 		<>
-			Owners
+			Search
 			<Link to="/">Go back</Link>
 		</>
 	)
