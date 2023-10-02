@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { routes } from './data/routes';
+import { FavoritesProvider } from './providers/favorites';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter(routes);
@@ -15,7 +16,9 @@ const router = createBrowserRouter(routes);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <FavoritesProvider>
+        <RouterProvider router={router} />
+      </FavoritesProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 )
