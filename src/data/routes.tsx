@@ -1,8 +1,6 @@
-import { RouteObject } from 'react-router-dom'
-import { Home } from '../pages/home'
-import { Layout } from '../components/Layout'
-import { Owners } from '../pages/owners'
-import { Search } from '../pages/search'
+import { RouteObject } from 'react-router-dom';
+import { Layout } from '../components';
+import { Home, Owners, Search } from '../pages'
 
 export const routes: RouteObject[] = [
 	{
