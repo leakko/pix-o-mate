@@ -1,31 +1,35 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { usersQuery } from '../queries/users.query';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { OwnersList, OwnerDetail } from '../components';
 import { useState } from 'react';
 import { Owner } from '../types/owner';
 import { blackBorder } from '../data/tailwind-classes';
-
-const owners: Owner[][] = [];
+import React from 'react';
 
 export const Owners = () => {
-	const [ loadedPage, setLoadedPage ] = useState(1);
-	const { isLoading, error, data, isFetching } = useQuery(usersQuery(loadedPage));
+	const { error, data, fetchNextPage, status, hasNextPage, isFetchingNextPage } = useInfiniteQuery(usersQuery);
 	const [ currentOwner, setCurrentOwner ] = useState<Owner | null>(null);
 
-	if ( loadedPage === 1 && (isLoading || isFetching) ) return <SyncLoader />;
-	if (error) return 'An error has occurred: ' + (error as { message: string }).message
-
-	if(data) owners[loadedPage] = data;
+	if ( status === 'loading' ) return <SyncLoader />;
+	if ( status === 'error' ) return 'An error has occurred: ' + (error as { message: string }).message
 	
 	return (
 		<div className='flex items-top flex-col'>
 			<div className='flex items-top flex-col-reverse md:flex-row'>
-				<OwnersList owners={owners.flat()}  setCurrentOwner={setCurrentOwner} currentOwner={currentOwner} />
+				<div className='flex flex-col'>
+					{data?.pages.map((group, i) => (
+						<React.Fragment key={i}>
+						{ <OwnersList owners={group.data}  setCurrentOwner={setCurrentOwner} currentOwner={currentOwner} lastOwnerList={i === data?.pages.length - 1} /> }
+						</React.Fragment>
+					))}
+					{isFetchingNextPage
+						? <div className='flex justify-center mt-4'><SyncLoader /></div>
+						: <button onClick={() => fetchNextPage()} disabled={!hasNextPage || isFetchingNextPage} className={`rounded-full py-1 mt-3 ${blackBorder} bg-white text-black`}>Ver más</button>
+					}
+				</div>
 				{ currentOwner && <OwnerDetail owner={currentOwner} /> }
 			</div>
-			{ (isLoading || isFetching) && <div className='flex justify-center my-1'><SyncLoader /></div>}
-			<button onClick={() => setLoadedPage(page => page + 1)} className={`rounded-full py-1 mt-3 ${blackBorder} bg-white text-black`}>Ver más</button>
 		</div>
 	)
 }
