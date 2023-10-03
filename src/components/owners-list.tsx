@@ -23,6 +23,7 @@ export const OwnersList: React.FC<Props> = ({ owners, currentOwner, setCurrentOw
 							${owner.id === currentOwner?.id ? 'bg-black text-white': 'bg-white text-black'}
 						`}
 						onClick={() => onClick(owner)}
+						key={ owner.id }
 					>
 						{ owner.name }, {owner.status}
 					</li>
