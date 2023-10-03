@@ -19,7 +19,7 @@ export const OwnerDetail: React.FC<Props> = ({ owner }) => {
 	}
 
 	return (
-		<div className={`flex flex-col justify-between p-3 my-3 md:mx-2 md:my-0 ${blackBorder}`}>
+		<div className={`flex flex-col justify-between p-3 my-3 md:mx-2 md:my-0 ${blackBorder} md:bg-white bg-slate-300`}>
 			<div>
 				<p>{ owner.name }</p>
 				<p>{ owner.status }</p>
@@ -27,7 +27,7 @@ export const OwnerDetail: React.FC<Props> = ({ owner }) => {
 				<p>{ owner.email }</p>
 			</div>
 			<button 
-				className={`rounded-full py-1 ${blackBorder} ${isFavorite ? 'bg-black text-white': 'bg-white text-black'}`}
+				className={`rounded-full py-1 my-2 ${blackBorder} ${isFavorite ? 'bg-black text-white': 'bg-white text-black'}`}
 				onClick={() => onclick(owner)}
 			>
 				{ `${isFavorite ? 'Quitar de ' : 'Añadir a '}  favoritos` }

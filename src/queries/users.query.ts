@@ -8,7 +8,7 @@ export const usersQuery: UseInfiniteQueryOptions<AxiosResponse<Owner[]>> = {
 		queryFn: ({ pageParam = 1 }) => {
 			return goApiService.getUsers(pageParam)
 			.then(resp => {
-				console.log(resp);
+				// TODO: Increment dead cats counter
 				return resp;
 			})
 			.then(resp => {
